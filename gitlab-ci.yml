@@ -1,0 +1,18 @@
+stages:
+    - test
+    - build
+
+test:
+    image: golang:1.17-alpine
+    stage: test
+    script:
+        - git clone https://github.com/UNIwise/devops-assignment.git
+        - cd devops-assignment/    
+        - go test -v
+build:
+    stage: build
+    script:
+        - git clone https://github.com/UNIwise/devops-assignment.git
+        - cd devops-assignment/
+        - docker build . -t ttl.sh/devops-assignment:1h 
+        - docker push ttl.sh/devops-assignment:1h
